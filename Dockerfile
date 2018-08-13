@@ -22,13 +22,14 @@ RUN apt-get update && apt-get install -y git zlib1g-dev libfreetype6-dev libjpeg
 
 COPY php.ini /usr/local/etc/php/php.ini
 COPY bookstack.conf /etc/apache2/sites-enabled/bookstack.conf
+COPY ports.conf /etc/apache2/ports.conf
 RUN a2enmod rewrite
 
 COPY docker-entrypoint.sh /
 
 WORKDIR $BOOKSTACK_HOME
 
-EXPOSE 80
+EXPOSE 8080
 
 VOLUME ["$BOOKSTACK_HOME/public/uploads","$BOOKSTACK_HOME/public/storage"]
 
