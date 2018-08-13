@@ -12,7 +12,7 @@ objects:
       - "ReadWriteOnce"
     resources:
       requests:
-        storage: "5Gi"
+        storage: "1Gi"
 - apiVersion: "v1"
   kind: "PersistentVolumeClaim"
   metadata:
@@ -22,7 +22,7 @@ objects:
       - "ReadWriteOnce"
     resources:
       requests:
-        storage: "5Gi"
+        storage: "1Gi"
 - apiVersion: "v1"
   kind: "PersistentVolumeClaim"
   metadata:
@@ -32,7 +32,7 @@ objects:
       - "ReadWriteOnce"
     resources:
       requests:
-        storage: "5Gi"
+        storage: "1Gi"
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
   metadata:
@@ -167,7 +167,6 @@ objects:
       template: bookstack
     name: bookstack
   spec:
-    host: localhost
     port:
       targetPort: 8080-tcp
     tls:
