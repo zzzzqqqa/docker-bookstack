@@ -34,7 +34,7 @@ VOLUME ["$BOOKSTACK_HOME/public/uploads","$BOOKSTACK_HOME/public/storage"]
 
 USER 1001:www-data
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["/docker-entrypoint.sh"]
 
 ARG BUILD_DATE
 ARG VCS_REF
