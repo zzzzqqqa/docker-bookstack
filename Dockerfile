@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -y git zlib1g-dev libfreetype6-dev libjpeg
    && tar -xf ${BOOKSTACK}.tar.gz && mv BookStack-${BOOKSTACK_VERSION} ${BOOKSTACK_HOME} && rm ${BOOKSTACK}.tar.gz  \
    && cd $BOOKSTACK_HOME && composer install \
    && chown -R www-data:www-data $BOOKSTACK_HOME \
-   && chmod -R g+w $BOOKSTACK_HOME \
    && apt-get -y autoremove \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/* /var/tmp/* /etc/apache2/sites-enabled/000-*.conf
@@ -24,6 +23,7 @@ RUN apt-get update && apt-get install -y git zlib1g-dev libfreetype6-dev libjpeg
 COPY php.ini /usr/local/etc/php/php.ini
 COPY bookstack.conf /etc/apache2/sites-enabled/bookstack.conf
 RUN a2enmod rewrite
+RUN chmod -R g+w $BOOKSTACK_HOME
 
 COPY docker-entrypoint.sh /
 
@@ -35,7 +35,7 @@ VOLUME ["$BOOKSTACK_HOME/public/uploads","$BOOKSTACK_HOME/public/storage"]
 
 USER 1001:www-data
 
-CMD ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 ARG BUILD_DATE
 ARG VCS_REF
