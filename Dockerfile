@@ -34,11 +34,11 @@ VOLUME ["$BOOKSTACK_HOME/public/uploads","$BOOKSTACK_HOME/public/storage"]
 
 RUN chmod -R g+w vendor \
    && chown -R www-data:www-data public/uploads && chmod -R 775 public/uploads \
-   && chown -R www-data:www-data storage/uploads && chmod -R 775 storage/uploads \
+   && chown -R www-data:www-data storage/uploads && chmod -R 775 storage/uploads
 
 USER www-data:www-data
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["/docker-entrypoint.sh"]
 
 ARG BUILD_DATE
 ARG VCS_REF
