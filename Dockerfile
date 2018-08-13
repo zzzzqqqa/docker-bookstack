@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y git zlib1g-dev libfreetype6-dev libjpeg
    && tar -xf ${BOOKSTACK}.tar.gz && mv BookStack-${BOOKSTACK_VERSION} ${BOOKSTACK_HOME} && rm ${BOOKSTACK}.tar.gz  \
    && cd $BOOKSTACK_HOME && composer install \
    && chown -R www-data:www-data $BOOKSTACK_HOME \
+   && chmod -R g+w $BOOKSTACK_HOME \
    && apt-get -y autoremove \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/* /var/tmp/* /etc/apache2/sites-enabled/000-*.conf
