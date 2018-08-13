@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: bookstack
+objects:
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    labels:
+      app: bookstack
+    name: bookstack
+  spec:
+    replicas: 1
+    strategy:
+      type: Rolling
+    template:
+      metadata:
+        labels:
+          name: bookstack
+      spec:
+        containers:
+          - image: pacroy/bookstack-openshift
+            imagePullPolicy: Always
+            name: bookstack
+            ports:
+              - containerPort: 8080
+                protocol: TCP
+            env:
+              - name: DB_HOST
+                value: bookstack_db:3306
+              - name: DB_DATABASE
+                value: bookstack
+              - name: DB_USERNAME
+                value: bookstack
+              - name: DB_PASSWORD
+                value: secret
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        terminationGracePeriodSeconds: 30
+    triggers:
+      - type: ConfigChange

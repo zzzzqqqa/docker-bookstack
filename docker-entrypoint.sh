@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Running as " && whoami
+
 set -e
 
 echoerr() { echo "$@" 1>&2; }
