@@ -32,6 +32,12 @@ EXPOSE 80
 
 VOLUME ["$BOOKSTACK_HOME/public/uploads","$BOOKSTACK_HOME/public/storage"]
 
+RUN echo "Setting folder permissions for uploads" \
+   && chown -R www-data:www-data public/uploads && chmod -R 775 public/uploads \
+   && chown -R www-data:www-data storage/uploads && chmod -R 775 storage/uploads
+
+USER 1001
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 ARG BUILD_DATE
