@@ -1,6 +1,7 @@
 #!/bin/bash
-whomai
-groups
+echo "Run As:"
+id
+
 set -e
 
 echoerr() { echo "$@" 1>&2; }

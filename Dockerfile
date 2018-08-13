@@ -33,14 +33,12 @@ EXPOSE 8080
 
 VOLUME ["$BOOKSTACK_HOME/public/uploads","$BOOKSTACK_HOME/public/storage"]
 
-RUN chown -R www-data:www-data public/uploads && chmod -R 775 public/uploads \
-   && chown -R www-data:www-data storage/uploads && chmod -R 775 storage/uploads \
-   && chmod -R g+w $BOOKSTACK_HOME \
-   && chmod -R g+w /var/run/apache2
+RUN chgrp -R 0 $BOOKSTACK_HOME /var/run/apache2 \
+   && chmod -R g=u $BOOKSTACK_HOME /var/run/apache2
 
-USER  1000090000:www-data
+USER  1001
 
-CMD ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 ARG BUILD_DATE
 ARG VCS_REF
