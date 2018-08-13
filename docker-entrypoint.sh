@@ -103,7 +103,7 @@ else
   echoerr wait-for-db: timeout out after 15 seconds waiting for ${DB_HOST_NAME}:${DB_PORT}
 fi
 
-composer install
+#composer install
 
 php artisan key:generate
 
