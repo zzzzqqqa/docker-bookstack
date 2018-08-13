@@ -36,7 +36,7 @@ VOLUME ["$BOOKSTACK_HOME/public/uploads","$BOOKSTACK_HOME/public/storage"]
 RUN chown -R www-data:www-data public/uploads && chmod -R 775 public/uploads \
    && chown -R www-data:www-data storage/uploads && chmod -R 775 storage/uploads
 
-USER www-data:www-data
+USER 1000090000:www-data
 
 CMD ["/docker-entrypoint.sh"]
 
