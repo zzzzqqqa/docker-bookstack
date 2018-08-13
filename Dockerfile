@@ -34,7 +34,7 @@ EXPOSE 8080
 VOLUME ["$BOOKSTACK_HOME/public/uploads","$BOOKSTACK_HOME/public/storage"]
 
 RUN chown -R www-data:www-data public/uploads && chmod -R 775 public/uploads \
-   && chown -R www-data:www-data storage/uploads && chmod -R 775 storage/uploads
+   && chown -R www-data:www-data storage/uploads && chmod -R 775 storage/uploads \
    && chmod -R g+w /var/run/apache2
 
 USER  1000090000:www-data
