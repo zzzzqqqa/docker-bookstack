@@ -1,0 +1,31 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: bookstack
+  name: bookstack
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'bookstack:latest'
+  runPolicy: Serial
+  source:
+    git:
+      ref: master
+      uri: 'https://github.com/pacroy/docker-bookstack.git'
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: DockerImage
+        name: 'php:7.1'
+        namespace: openshift
+    type: Docker
+  triggers:
+    - imageChange: {}
+      type: ImageChange
+    - type: ConfigChange
+    - github: {}
+      type: GitHub

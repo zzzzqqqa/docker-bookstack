@@ -1,4 +1,4 @@
-FROM php:7.1-apache-stretch
+FROM registry.access.redhat.com/rhscl/php-71-rhel7
 
 ENV BOOKSTACK=BookStack \
     BOOKSTACK_VERSION=0.23.0 \
