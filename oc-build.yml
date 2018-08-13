@@ -20,12 +20,9 @@ spec:
     dockerStrategy:
       from:
         kind: DockerImage
-        name: 'php:7.1'
-        namespace: openshift
+        name: 'registry.access.redhat.com/rhscl/php-71-rhel7'
     type: Docker
   triggers:
     - imageChange: {}
       type: ImageChange
     - type: ConfigChange
-    - github: {}
-      type: GitHub
