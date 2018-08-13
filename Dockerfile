@@ -23,7 +23,6 @@ RUN apt-get update && apt-get install -y git zlib1g-dev libfreetype6-dev libjpeg
 COPY php.ini /usr/local/etc/php/php.ini
 COPY bookstack.conf /etc/apache2/sites-enabled/bookstack.conf
 RUN a2enmod rewrite
-RUN chmod -R g+w $BOOKSTACK_HOME
 
 COPY docker-entrypoint.sh /
 
@@ -33,7 +32,11 @@ EXPOSE 80
 
 VOLUME ["$BOOKSTACK_HOME/public/uploads","$BOOKSTACK_HOME/public/storage"]
 
-USER 1001:www-data
+RUN chmod -R g+w vendors \
+    chown -R www-data:www-data public/uploads && chmod -R 775 public/uploads \
+    chown -R www-data:www-data storage/uploads && chmod -R 775 storage/uploads \
+
+USER www-data:www-data
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
