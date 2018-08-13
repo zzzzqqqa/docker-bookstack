@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y git zlib1g-dev libfreetype6-dev libjpeg
    && wget https://github.com/ssddanbrown/BookStack/archive/v${BOOKSTACK_VERSION}.tar.gz -O ${BOOKSTACK}.tar.gz \
    && tar -xf ${BOOKSTACK}.tar.gz && mv BookStack-${BOOKSTACK_VERSION} ${BOOKSTACK_HOME} && rm ${BOOKSTACK}.tar.gz  \
    && cd $BOOKSTACK_HOME && composer install \
-   && chown -R www-data:www-data $BOOKSTACK_HOME \
+   && chown -R 1000090000:1000090000 $BOOKSTACK_HOME \
    && apt-get -y autoremove \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/* /var/tmp/* /etc/apache2/sites-enabled/000-*.conf
@@ -33,10 +33,10 @@ EXPOSE 8080
 
 VOLUME ["$BOOKSTACK_HOME/public/uploads","$BOOKSTACK_HOME/public/storage"]
 
-RUN chown -R www-data:www-data public/uploads && chmod -R 775 public/uploads \
-   && chown -R www-data:www-data storage/uploads && chmod -R 775 storage/uploads
+RUN chown -R 1000090000:1000090000 public/uploads && chmod -R 775 public/uploads \
+   && chown -R 1000090000:1000090000 storage/uploads && chmod -R 775 storage/uploads
 
-USER 1000090000:www-data
+USER  1000090000:1000090000
 
 CMD ["/docker-entrypoint.sh"]
 

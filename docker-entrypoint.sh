@@ -1,4 +1,5 @@
 #!/bin/bash
+whomai
 set -e
 
 echoerr() { echo "$@" 1>&2; }
