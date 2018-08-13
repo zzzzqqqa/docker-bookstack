@@ -1,5 +1,6 @@
 #!/bin/bash
 whomai
+groups
 set -e
 
 echoerr() { echo "$@" 1>&2; }
