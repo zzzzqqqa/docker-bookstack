@@ -50,8 +50,8 @@ objects:
           name: bookstack-db
       spec:
         containers:
-          - image: mysql:5.7.21
-            imagePullPolicy: Always
+          - image: registry.access.redhat.com/rhscl/mysql-57-rhel7
+            imagePullPolicy: IfNotPresent
             name: bookstack-db
             ports:
               - containerPort: 3306
